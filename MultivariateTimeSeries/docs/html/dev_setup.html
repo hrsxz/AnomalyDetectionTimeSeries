@@ -1,0 +1,40 @@
+<p>要将 Jupyter Notebook （<code>.ipynb</code> 文件）转换为 HTML 文件，你可以使用 <code>nbconvert</code> 工具，这是一个非常流行且强大的工具，用于转换 Jupyter 笔记本。以下是如何使用 <code>nbconvert</code> 将 Jupyter Notebook 转换为 HTML 的步骤：</p>
+<h3>安装 nbconvert</h3>
+<p>首先，确保你已经安装了 <code>nbconvert</code>。如果未安装，你可以通过 pip 安装它：</p>
+<p><code>bash
+pip install nbconvert</code></p>
+<h3>使用 nbconvert 命令行工具</h3>
+<p>一旦安装了 <code>nbconvert</code>，你可以直接从命令行使用它来将 Notebook 转换为 HTML。打开命令行工具，然后使用以下命令：</p>
+<p><code>bash
+jupyter nbconvert --to html /path/to/your/Notebook.ipynb</code></p>
+<p>这里的 <code>/path/to/your/Notebook.ipynb</code> 是你的 Jupyter Notebook 文件的路径。这条命令会在相同的目录下生成一个 HTML 文件，文件名与 Notebook 相同。</p>
+<h3>在 Python 脚本中使用 nbconvert</h3>
+<p>如果你希望在 Python 脚本中进行这种转换，你可以使用 <code>nbconvert</code> 的 Python API 来实现。这对于自动化任务特别有用。下面是一个示例脚本，展示了如何在 Python 中执行这个转换：</p>
+<p>```python</p>
+<h1>导入 nbconvert 的相关模块</h1>
+<p>from nbconvert import HTMLExporter
+import nbformat
+from pathlib import Path</p>
+<p>def convert_notebook_to_html(notebook_path, output_path):
+    # 读取 Notebook 文件
+    notebook_path = Path(notebook_path)
+    notebook = nbformat.read(notebook_path, as_version=4)</p>
+<pre><code># 创建一个 HTML 导出器
+html_exporter = HTMLExporter()
+html_exporter.template_name = 'classic'
+
+# 导出 HTML
+(body, resources) = html_exporter.from_notebook_node(notebook)
+
+# 将 HTML 写入文件
+output_path = Path(output_path)
+output_path.write_text(body, encoding='utf-8')
+print(f"HTML has been saved to {output_path}")
+</code></pre>
+<h1>使用示例</h1>
+<p>convert_notebook_to_html('/path/to/your/Notebook.ipynb', '/path/to/output/Notebook.html')
+```</p>
+<p>这段代码首先读取指定路径的 Notebook 文件，然后使用 <code>nbconvert</code> 的 <code>HTMLExporter</code> 来生成 HTML 内容，并将其保存到指定的输出路径。</p>
+<h3>注意</h3>
+<p>确保路径是正确的，并且 Python 环境中安装了必要的包，如 <code>nbformat</code> 和 <code>nbconvert</code>。如果有任何包缺失，可以使用 <code>pip</code> 安装它们。</p>
+<p>通过以上方法，你可以轻松地将 Jupyter Notebook 转换成 HTML 文件，无论是通过命令行还是通过编程方式。这对于分享、发布或存档 Notebook 的内容非常有用。</p>

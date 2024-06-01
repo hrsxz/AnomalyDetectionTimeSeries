@@ -1,0 +1,8 @@
+site_name: Multivariate time series forecasting
+
+plugins:
+  - mkdocstrings
+
+nav:
+  - mkdocs_index.md
+  - ../dev_setup.md

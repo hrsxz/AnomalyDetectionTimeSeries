@@ -1,2 +1,5 @@
 /MultivariateTimeSeries/data
 /MultivariateTimeSeries/venv
+__pycache__/
+*.pyc
+

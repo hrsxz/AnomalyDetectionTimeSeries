@@ -211,3 +211,24 @@ def get_notebook_converter(source_path, target_folder, additional_pdf=False):
         return FileNotebookConverter(source_path, target_folder, additional_pdf)
     else:
         raise ValueError("Source path must be a file or a directory")
+
+
+# This part used for code2flow in order to generate the call graph of the source code.
+# ------------------------------------------------------------------------------------
+# PS D:\Digitalization\AnomalyDetectionTimeSeries\MultivariateTimeSeries> code2flow
+# src/utils/utils.py --output docs/code2flow/pics_code2flow.png
+# ------------------------------------------------------------------------------------
+#  import constants
+#  if __name__ == "__main__":
+#      # 假设 'path_to_markdown' 可以是文件或文件夹
+#      # path_to_markdown = (constants.project_root_path /
+#      #                     "notebook/time-series-gan-with-pytorch.ipynb")
+#      print(constants.project_root_path)
+#      path_to_markdown = constants.project_root_path / "notebook"
+#      target_folder = constants.project_root_path / "docs/html"
+#      converter = get_notebook_converter(
+#          path_to_markdown,
+#          target_folder,
+#          additional_pdf=True
+#      )
+#      converter.convert()
